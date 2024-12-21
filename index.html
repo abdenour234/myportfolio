@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdenour Chenouf - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">Abdenour Chenouf</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="photo-container">
+                <img src="me.jpg" alt="Abdenour Chenouf" class="profile-photo">
+                <div class="photo-overlay"></div>
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">About Me</h2>
+                <p class="about-text">
+                    I am a dedicated student in Data Science and Cloud Computing,
+ seeking internship opportunities to apply my skills in data analysis,
+ data engineering, and AI. I am eager to contribute to innovative
+ solutions while gaining practical experience through real-world
+ projects
+                </p>
+                <div class="buttons-container">
+                    <a href="Cv.pdf" class="btn btn-primary" download>
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                    <div class="social-buttons">
+                        <a href="https://www.linkedin.com/in/chenoufabdenour/" class="btn btn-social" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/abdenour234" class="btn btn-social" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="skills-section">
+        <h2 class="skills-title">My Skills</h2>
+        <div class="bubbles-container">
+            <!-- Data Engineering Bubble -->
+            <div class="skill-bubble" data-skill="data-engineering">
+                <span>Data Engineering</span>
+                <div class="nested-skills">
+                    <div class="nested-bubble">ETL Development</div>
+                    <div class="nested-bubble">Data Pipelines</div>
+                    <div class="nested-bubble">Data Transformation</div>
+                    <div class="nested-bubble">SQL/MySQL/PL-SQL</div>
+                    <div class="nested-bubble">Apache Airflow</div>
+                </div>
+            </div>
+
+            <!-- Cloud & DevOps Bubble -->
+            <div class="skill-bubble" data-skill="cloud-devops">
+                <span>Cloud & DevOps</span>
+                <div class="nested-skills">
+                    <div class="nested-bubble">Oracle Cloud (OCI)</div>
+                    <div class="nested-bubble">AWS</div>
+                    <div class="nested-bubble">Docker</div>
+                    <div class="nested-bubble">Git</div>
+                </div>
+            </div>
+
+            <!-- Programming Languages Bubble -->
+            <div class="skill-bubble" data-skill="programming">
+                <span>Programming</span>
+                <div class="nested-skills">
+                    <div class="nested-bubble">Python</div>
+                    <div class="nested-bubble">Java</div>
+                    <div class="nested-bubble">R</div>
+                    <div class="nested-bubble">C</div>
+                </div>
+            </div>
+
+            <!-- Data Visualization Bubble -->
+            <div class="skill-bubble" data-skill="visualization">
+                <span>Data Visualization</span>
+                <div class="nested-skills">
+                    <div class="nested-bubble">Streamlit</div>
+                    <div class="nested-bubble">Matplotlib</div>
+                    <div class="nested-bubble">Seaborn</div>
+                    <div class="nested-bubble">Power BI</div>
+                </div>
+            </div>
+
+            <!-- Machine Learning Bubble -->
+            <div class="skill-bubble" data-skill="ml">
+                <span>Machine Learning</span>
+                <div class="nested-skills">
+                    <div class="nested-bubble">Scikit-learn</div>
+                    <div class="nested-bubble">PyTorch</div>
+                    <div class="nested-bubble">TensorFlow</div>
+                </div>
+            </div>
+
+            <!-- Soft Skills Bubble -->
+            <div class="skill-bubble" data-skill="soft-skills">
+                <span>Soft Skills</span>
+                <div class="nested-skills">
+                    <div class="nested-bubble">Problem Solving</div>
+                    <div class="nested-bubble">Teamwork</div>
+                    <div class="nested-bubble">Communication</div>
+                    <div class="nested-bubble">Analytical Thinking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="education-container"></div>
+</body>
+<script src="script.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script>
+    fetch('education.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('education-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading education section:', error));
+</script>
+<!-- ... existing code ... -->
+
+<!-- Replace the existing projects import with this -->
+<section id="projects-container"></section>
+
+<script>
+    // Load projects section
+    fetch('projects.html')
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            
+            // Get all styles from projects.html
+            const styles = doc.querySelectorAll('link[rel="stylesheet"]');
+            styles.forEach(style => {
+                if (!document.querySelector(`link[href="${style.getAttribute('href')}"]`)) {
+                    document.head.appendChild(style.cloneNode(true));
+                }
+            });
+            
+            // Get all scripts from projects.html
+            const scripts = doc.querySelectorAll('script');
+            scripts.forEach(script => {
+                if (script.src && !document.querySelector(`script[src="${script.getAttribute('src')}"]`)) {
+                    const newScript = document.createElement('script');
+                    newScript.src = script.src;
+                    document.body.appendChild(newScript);
+                }
+            });
+            
+            // Get the projects section content
+            const projectsSection = doc.querySelector('.projects-section');
+            document.getElementById('projects-container').innerHTML = projectsSection.outerHTML;
+        })
+        .catch(error => console.error('Error loading projects section:', error));
+</script>
+<div id="contact-container"></div>
+
+<!-- Add these before closing body tag -->
+<script src="contact-script.js"></script>
+<script>
+    fetch('contact.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('contact-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading contact section:', error));
+</script>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Abdenour Chenouf</h4>
+            <p>Data Science & Cloud Computing Student</p>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Connect</h4>
+            <div class="footer-social-links">
+                <a href="https://www.linkedin.com/in/chenoufabdenour/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/abdenour234" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:abdenour.chenouf23@ump.ac.ma">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Abdenour Chenouf. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html> 

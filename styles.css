@@ -1,0 +1,604 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+/* Header slide-up animation when scrolling */
+header.hide {
+    transform: translateY(-100%);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.logo a:hover {
+    transform: scale(1.05);
+}
+
+/* Underline animation for logo */
+.logo a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+.logo a:hover::after {
+    width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+/* Underline animation for nav links */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #007bff;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Add animation for nav items */
+.nav-links li {
+    opacity: 0;
+    animation: fadeInDown 0.5s ease forwards;
+}
+
+/* Stagger the animation for each nav item */
+.nav-links li:nth-child(1) { animation-delay: 0.1s; }
+.nav-links li:nth-child(2) { animation-delay: 0.2s; }
+.nav-links li:nth-child(3) { animation-delay: 0.3s; }
+.nav-links li:nth-child(4) { animation-delay: 0.4s; }
+.nav-links li:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
+
+/* Add this Font Awesome CDN link in your HTML head */
+
+/* About Section Styles */
+.about-section {
+    min-height: 100vh;
+    padding: 100px 5%;
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Photo Styles */
+.photo-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    animation: fadeInLeft 1s ease;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,123,255,0.2), rgba(0,123,255,0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photo-container:hover .profile-photo {
+    transform: scale(1.1);
+}
+
+.photo-container:hover .photo-overlay {
+    opacity: 1;
+}
+
+/* Content Styles */
+.about-content {
+    flex: 1;
+    animation: fadeInRight 1s ease;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+.section-title:hover::after {
+    width: 100%;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+/* Button Styles */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: #007bff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+}
+
+.btn-social {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: #333;
+    color: white;
+    border: 2px solid #333;
+}
+
+.btn-social:hover {
+    background-color: transparent;
+    color: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+} 
+
+/* Add these updates to your existing styles */
+.bubbles-container {
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.skill-bubble {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float 6s ease-in-out infinite;
+    z-index: 1;
+    margin: 10px;  /* Add some margin */
+    flex: 0 0 auto;  /* Prevent bubbles from stretching */
+}
+
+/* Adjust container for better bubble distribution */
+.skills-section {
+    min-height: 100vh;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ensure proper grid layout for 3 bubbles per row */
+@media (min-width: 992px) {
+    .bubbles-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        place-items: center;
+    }
+}
+
+/* For smaller screens */
+@media (max-width: 991px) {
+    .bubbles-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .bubbles-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Adjust nested skills container for more items */
+.nested-skills {
+    width: 350px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.nested-bubble {
+    font-size: 0.9rem;
+    text-align: center;
+    white-space: nowrap;
+} 
+
+.skills-section {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: #2c3e50;
+}
+
+.bubbles-container {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.skill-bubble {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.skill-bubble:nth-child(2) {
+    animation-delay: -2s;
+}
+
+.skill-bubble:nth-child(3) {
+    animation-delay: -4s;
+}
+
+.skill-bubble span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+}
+
+.nested-skills {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    width: 300px;
+}
+
+.nested-bubble {
+    padding: 10px 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transform: scale(0);
+    transition: all 0.5s ease;
+}
+
+/* Active States */
+.skill-bubble.active {
+    width: 400px;
+    height: 400px;
+    animation: none;
+}
+
+.skill-bubble.active span {
+    opacity: 0;
+}
+
+.skill-bubble.active .nested-skills {
+    opacity: 1;
+    visibility: visible;
+}
+
+.skill-bubble.active .nested-bubble {
+    transform: scale(1);
+}
+
+.skill-bubble.hide {
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Add staggered animation for nested bubbles */
+.skill-bubble.active .nested-bubble:nth-child(1) { transition-delay: 0.1s; }
+.skill-bubble.active .nested-bubble:nth-child(2) { transition-delay: 0.2s; }
+.skill-bubble.active .nested-bubble:nth-child(3) { transition-delay: 0.3s; }
+.skill-bubble.active .nested-bubble:nth-child(4) { transition-delay: 0.4s; }
+/* Footer Styles */
+.footer {
+    background: #2d3436;
+    color: #fff;
+    padding: 3rem 0 1rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.footer-section h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background: #0084ff;
+}
+
+.footer-section p {
+    color: #b2bec3;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul li a {
+    color: #b2bec3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #0084ff;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-social-links a {
+    color: #b2bec3;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.footer-social-links a:hover {
+    color: #0084ff;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #404952;
+}
+
+.footer-bottom p {
+    color: #b2bec3;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-section h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-social-links {
+        justify-content: center;
+    }
+}
+
+/* Add these to your existing styles.css */
+.hamburger {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.hamburger:hover {
+    color: #0084ff;
+}
